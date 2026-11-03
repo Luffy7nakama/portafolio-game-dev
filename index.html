@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android Runner — Limpieza del Sistema</title>
+<meta name="description" content="Portal oficial de Android Runner: Limpieza del Sistema, endless runner 3D desarrollado en Unity.">
+<meta property="og:title" content="Android Runner — Limpieza del Sistema">
+<meta property="og:description" content="Endless runner 3D en Unity: un Android debe limpiar un sistema infectado y derrotar a cinco jefes.">
+<meta property="og:image" content="assets/img/portada.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2305060d'/%3E%3Cpath d='M8 20a8 8 0 0 1 16 0z' fill='%2300e5ff'/%3E%3Crect x='8' y='21' width='16' height='6' rx='2' fill='%23ff2b5e'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/portal.css">
+</head>
+<body>
+<a class="skip" href="#historia">Saltar al contenido</a>
+<div class="progress" id="progress"></div>
+
+<!-- ===================== 1. ENCABEZADO ===================== -->
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Android Runner, ir al inicio">
+      <svg class="brand-mark" viewBox="0 0 34 34" aria-hidden="true">
+        <rect x="1" y="1" width="32" height="32" rx="8" fill="#0e1224" stroke="#1d2440"/>
+        <line x1="11" y1="7" x2="13" y2="10.5" stroke="#ff2b5e" stroke-width="2" stroke-linecap="round"/>
+        <line x1="23" y1="7" x2="21" y2="10.5" stroke="#ff2b5e" stroke-width="2" stroke-linecap="round"/>
+        <path d="M8 19a9 8.5 0 0 1 18 0z" fill="#d62e2c"/>
+        <circle cx="13" cy="15.5" r="1.3" fill="#05060d"/><circle cx="21" cy="15.5" r="1.3" fill="#05060d"/>
+        <rect x="8" y="20.5" width="18" height="7" rx="2.5" fill="#242522"/>
+      </svg>
+      <span class="brand-name">ANDROID RUNNER<small>LIMPIEZA DEL SISTEMA</small></span>
+    </a>
+    <button class="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <nav aria-label="Secciones">
+      <ul class="menu" id="menu">
+        <li><a href="#historia">Historia</a></li>
+        <li><a href="#personaje">Personaje</a></li>
+        <li><a href="#mecanicas">Mecánicas</a></li>
+        <li><a href="#datos">Datos</a></li>
+        <li><a class="cta" href="#jugar">Jugar ahora</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ===================== 2. SECCIÓN PRINCIPAL ===================== -->
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div class="hero-meta"><span><i class="live-dot"></i> PROTOCOLO DE LIMPIEZA / ACTIVO</span><span>UNITY · ENDLESS RUNNER 3D</span></div>
+    <h1><span class="title-line">ANDROID</span><span class="title-line red">RUNNER<span class="title-star" aria-hidden="true">✳</span></span></h1>
+    <div class="hero-bottom"><p class="hook">El sistema está infectado.<br>Tu misión: <b>seguir corriendo.</b></p><p class="lead">Una ciudad digital. Cinco núcleos de infección. Un Android dispuesto a limpiarlo todo.</p><div class="actions"><a class="btn btn-play" href="juego/index.html">JUGAR AHORA <span class="play-triangle" aria-hidden="true"></span></a><a class="btn btn-ghost" href="#historia">Explorar la historia</a></div></div>
+    <div class="quick" aria-label="Métricas rápidas"><div class="q"><b>03</b><span>VIDAS INICIALES</span></div><div class="q"><b>1.500</b><span>PUNTOS / PORTAL</span></div><div class="q"><b>05</b><span>JEFES DISTINTOS</span></div><div class="q"><b>↑ ↓</b><span>SALTA / ESQUIVA</span></div></div>
+  </div>
+</section>
+<section class="cinema" aria-label="Vista del universo del juego">
+  <div class="cinema-sticky">
+    <figure class="shot" id="shot"><img src="assets/img/portada.jpg" alt="Android gris y guindo en una ciudad digital, entre virus y obstáculos" width="1600" height="1000" fetchpriority="high"></figure>
+    <div class="cinema-top"><span>ANDROID.EXE / ONLINE</span><span>01 — CIUDAD DIGITAL</span></div>
+    <div class="cinema-copy"><span class="eyebrow">Limpieza del sistema</span><p>NO HAY<br><em>VUELTA ATRÁS.</em></p></div>
+    <div class="cinema-bottom"><span>DESLIZA PARA ENTRAR EN EL SISTEMA</span><span class="crosshair" aria-hidden="true">＋</span><span>BUILD / WEBGL</span></div>
+    <svg class="signal-orbit" viewBox="0 0 180 180" aria-hidden="true"><g fill="none" stroke="currentColor"><circle cx="90" cy="90" r="77" opacity=".25"/><circle class="orbit-ring" cx="90" cy="90" r="66" stroke-width="2" stroke-dasharray="100 25 4 25"/><circle cx="90" cy="90" r="51" stroke-dasharray="1 7"/><path d="M90 5v23m0 124v23M5 90h23m124 0h23"/><path class="orbit-sweep" d="M90 90L90 26A64 64 0 0 1 154 90Z" fill="currentColor" opacity=".1" stroke="none"/></g><text x="90" y="88" text-anchor="middle" fill="currentColor" font-size="16" font-family="monospace">1.500</text><text x="90" y="107" text-anchor="middle" fill="currentColor" font-size="7" font-family="monospace">PRÓXIMO PORTAL</text></svg>
+    <div class="cinema-meter" aria-hidden="true"><span></span></div>
+  </div>
+</section>
+<div class="ticker" aria-hidden="true"><div class="ticker-track"><span>CORRE</span><b>✳</b><span>SALTA</span><b>✳</b><span>RESISTE</span><b>✳</b><span>LIMPIA EL SISTEMA</span><b>✳</b><span>CORRE</span><b>✳</b><span>SALTA</span><b>✳</b><span>RESISTE</span><b>✳</b></div></div>
+<!-- ===================== 3. HISTORIA ===================== -->
+<section class="block" id="historia">
+  <div class="wrap">
+    <span class="eyebrow">01 / EL ORIGEN</span>
+    <p class="statement" id="statement">Una infección tomó la ciudad digital. Virus, archivos corruptos y drones de malware bloquean cada ruta. <span class="hl">Solo queda un guardián.</span></p>
+    <div class="story">
+      <article class="card fx-left">
+        <span class="lbl">CONTEXTO NARRATIVO</span>
+        <h3>Una ciudad dentro del sistema</h3>
+        <p>La partida ocurre dentro de un ordenador convertido en metrópolis de circuitos, servidores y neón. La infección volvió obstáculos a los propios dispositivos, y el firewall ahora dispara láseres contra la ruta.</p>
+      </article>
+      <article class="card fx-right">
+        <span class="lbl">ARCO ARGUMENTAL</span>
+        <h3>La misión del Android</h3>
+        <p>El Android solo puede limpiar mientras corre. Cada 1.500 puntos se abre un portal hacia un núcleo de infección: un jefe que debe destruir para devolver la limpieza al sistema… hasta que despierte el siguiente.</p>
+      </article>
+    </div>
+    <div class="log" id="log" aria-label="Registro del sistema">
+      <div><span class="c">[00:00]</span> ANDROID.EXE iniciado · protocolo <span class="ok">LIMPIEZA</span> activo</div>
+      <div><span class="c">[00:03]</span> <span class="w">ADVERTENCIA</span> obstáculos en la pista principal</div>
+      <div><span class="c">[02:30]</span> <span class="e">ALERTA</span> núcleo detectado · abriendo portal…</div>
+      <div class="cur"><span class="c">[--:--]</span> corre. esquiva. <span class="ok">limpia.</span></div>
+    </div>
+  </div>
+  <div class="bosses-pin" id="bosses-pin">
+    <div class="wrap bosses-head">
+      <h3>Los cinco núcleos</h3>
+      <p>Un jefe distinto en cada portal.</p>
+    </div>
+    <div class="bosses" id="bosses">
+      <div class="boss" style="--bc:#7dff3a"><div class="n">01</div><svg viewBox="0 0 200 160" class="enemy-art" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3"><path d="M141.0 85.0L163.0 85.0"/><path d="M135.507041555162 105.5L154.55960043841964 116.5"/><path d="M120.5 120.50704155516198L131.5 139.55960043841964"/><path d="M100.0 126.0L100.0 148.0"/><path d="M79.50000000000001 120.50704155516199L68.50000000000001 139.55960043841964"/><path d="M64.49295844483801 105.5L45.440399561580364 116.5"/><path d="M59.0 85.0L37.0 85.00000000000001"/><path d="M64.49295844483802 64.5L45.44039956158037 53.49999999999999"/><path d="M79.49999999999999 49.492958444838024L68.49999999999997 30.440399561580385"/><path d="M99.99999999999999 44.0L99.99999999999999 22.0"/><path d="M120.5 49.49295844483802L131.5 30.44039956158037"/><path d="M135.50704155516198 64.49999999999999L154.5596004384196 53.49999999999997"/><circle cx="100" cy="85" r="42"/><path d="M75 49l-5-25 23 13 14-19 12 23 19-10-6 24"/><ellipse cx="100" cy="85" rx="24" ry="15"/><circle cx="100" cy="85" r="6" fill="currentColor"/></g></svg><h4>Virus Rey</h4><p>Esfera de púas coronada con un ojo gigante.</p><div class="hp">VIDA <b>25</b></div></div>
+      <div class="boss" style="--bc:#ff33bf"><div class="n">02</div><svg viewBox="0 0 200 160" class="enemy-art" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3"><ellipse cx="100" cy="88" rx="65" ry="17"/><path d="M60 80a40 40 0 0 1 80 0M45 98l-15 28m125-28 15 28M25 126h25m100 0h25M80 105l-5 20m45-20 5 20"/><circle cx="100" cy="65" r="7"/></g></svg><h4>Dron Malware</h4><p>Platillo con cúpula y cuatro hélices.</p><div class="hp">VIDA <b>32</b></div></div>
+      <div class="boss" style="--bc:#ff8c1a"><div class="n">03</div><svg viewBox="0 0 200 160" class="enemy-art" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3"><path d="M32 100Q55 35 82 85T135 85T175 85" stroke-width="25"/><path d="M23 83L12 65m25 12L50 60M47 113l15 16M80 100l-5 25m44-24 5 27m39-27 10 22"/><circle cx="31" cy="94" r="4" fill="currentColor"/></g></svg><h4>Gusano Informático</h4><p>Pinzas y un cuerpo de segmentos ondulantes.</p><div class="hp">VIDA <b>38</b></div></div>
+      <div class="boss" style="--bc:#40b3ff"><div class="n">04</div><svg viewBox="0 0 200 160" class="enemy-art" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3"><path d="M65 50l5-23 14 17 15-27 13 27 18-17 5 23M50 55h100v70H50zM65 125v15h70v-15M70 96h60v-22H70zM38 75H25v40h13m124-40h13v40h-13"/><path d="M88 107h24"/></g></svg><h4>Titán Firewall</h4><p>Cabeza robótica con visor y llamas.</p><div class="hp">VIDA <b>45</b></div></div>
+      <div class="boss" style="--bc:#b34dff"><div class="n">05</div><svg viewBox="0 0 200 160" class="enemy-art" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3"><ellipse cx="100" cy="87" rx="32" ry="38"/><path d="M72 63L45 40 24 61m45 16L35 65 13 90m56 2L30 99l-9 28m52-18-26 22v20M128 63l27-23 21 21m-45 16 34-12 22 25m-56 2 39 7 9 28m-52-18 26 22v20M87 115l5 20 8-13 8 13 5-20"/><circle cx="89" cy="78" r="4"/><circle cx="111" cy="78" r="4"/><circle cx="100" cy="67" r="4"/></g></svg><h4>Araña Botnet</h4><p>Seis ojos, colmillos y ocho patas.</p><div class="hp">VIDA <b>52</b></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 4. PERSONAJE PRINCIPAL ===================== -->
+<section class="block" id="personaje">
+  <div class="wrap">
+    <span class="eyebrow fx-up">02 / EL GUARDIÁN</span>
+    <h2 class="fx-up">Hecho para<br><em>no detenerse.</em></h2>
+    <p class="intro fx-up">El guardián del sistema. Fue creado para una sola tarea, la limpieza, y no se detiene ante nada.</p>
+    <div class="char">
+      <div class="viewer fx-zoom" id="viewer">
+        <img src="assets/img/personaje.jpg" alt="Modelo 3D del Android: robot gris y guindo con antenas y el escudo de la Universidad del Valle en el pecho" width="900" height="1100">
+        <span class="badge">ANDROID / UNIDAD 01</span>
+        <span class="hint" id="viewer-hint">ARRASTRA PARA GIRAR</span>
+      </div>
+      <div>
+        <div class="traits">
+          <div class="trait fx-right"><b>Rol</b><span>Último programa de defensa del sistema.</span></div>
+          <div class="trait fx-right"><b>Estética</b><span>Robot gris y guindo con antenas y el escudo de la Universidad del Valle en el pecho.</span></div>
+          <div class="trait fx-right"><b>Animación</b><span>Corre, salta con voltereta, se desliza y cae al perder.</span></div>
+        </div>
+        <ul class="skills">
+          <li class="fx-pop"><span class="ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 16V4M5 9l5-5 5 5"/></svg></span><div><h4>Salto ágil</h4><small>Supera obstáculos bajos</small></div></li>
+          <li class="fx-pop"><span class="ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 14h14M6 10l-3 4 3 4"/></svg></span><div><h4>Deslizamiento</h4><small>Pasa bajo obstáculos altos</small></div></li>
+          <li class="fx-pop"><span class="ic p"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="10" r="2.5"/><path d="M10 10h8"/></svg></span><div><h4>Disparo de energía</h4><small>Daña al jefe</small></div></li>
+          <li class="fx-pop"><span class="ic p"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V5z"/></svg></span><div><h4>Escudo</h4><small>3 s sin recibir daño</small></div></li>
+          <li class="fx-pop"><span class="ic p"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 2L4 11h5l-1 7 7-9h-5z"/></svg></span><div><h4>Súper Rayo</h4><small>Arrasa con todo lo que tiene delante · se carga golpeando enemigos</small></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 5. MECÁNICAS Y CONTROLES ===================== -->
+<section class="block" id="mecanicas">
+  <div class="wrap">
+    <span class="eyebrow fx-up">03 / APRENDE A SOBREVIVIR</span>
+    <h2 class="fx-up">Tus reflejos.<br><em>Tu mejor defensa.</em></h2>
+    <p class="intro fx-up">Se juega con teclado. La velocidad sube con el tiempo.</p>
+
+    <div class="keys" id="keys">
+      <div class="key"><span class="cap">↑</span><h4>Saltar</h4><small>Obstáculos bajos</small></div>
+      <div class="key"><span class="cap">↓</span><h4>Agacharse</h4><small>En el aire: caída rápida</small></div>
+      <div class="key"><span class="cap">C</span><h4>Cámara</h4><small>3 vistas</small></div>
+      <div class="key"><span class="cap">R</span><h4>Reiniciar</h4><small>También Enter · M silencia</small></div>
+      <div class="key boss-k"><span class="cap">Espacio</span><h4>Disparar</h4><small>Mantener = ráfaga</small></div>
+      <div class="key boss-k"><span class="cap">X</span><h4>Escudo</h4><small>Dura 3 s</small></div>
+      <div class="key boss-k"><span class="cap">Z</span><h4>Súper Rayo</h4><small>Con la barra SÚPER llena</small></div>
+      <div class="key boss-k"><span class="cap">◆</span><h4>Poderes</h4><small>Solo contra el jefe</small></div>
+    </div>
+    <div class="keys-note fx-up"><span>Siempre disponibles</span><span class="b">Solo en la dimensión del jefe</span></div>
+
+    <div class="mech">
+      <div>
+        <div class="obs">
+          <div class="low fx-left"><h4>Bajos · Saltar</h4><span class="m">Marca roja en el piso</span>
+            <ul><li>Virus</li><li>Bug</li><li>Archivo corrupto</li><li>Teléfono</li><li>Laptop</li><li>Reloj</li><li>Estuche</li><li>Rastreador</li></ul></div>
+          <div class="high fx-left"><h4>Altos · Agacharse</h4><span class="m">Marca ámbar con láser</span>
+            <ul><li>Firewall</li><li>Dron malware</li><li>Enjambre</li><li>Tablet</li><li>Monitor</li><li>Audífonos</li></ul></div>
+        </div>
+        <div class="cond">
+          <div class="win fx-up"><h4>Victoria</h4><p>Derrotar a los 5 jefes y superar tu récord. Después vuelven más fuertes (2.0, 3.0…).</p></div>
+          <div class="lose fx-up"><h4>Derrota</h4><p>Quedarte sin vidas: aparece <b style="color:var(--crimson)">«SISTEMA INFECTADO»</b>.</p></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Lógica de la partida</h3>
+        <ol class="flow" id="flow">
+          
+          <li>Cuenta regresiva de <b>3 s</b> y empieza la carrera.</li>
+          <li>Ganas <b>10 puntos por segundo</b>.</li>
+          <li>Cada choque quita <b>1 vida</b> y da 1,5 s de invulnerabilidad.</li>
+          <li>A los <b>1.500 puntos</b> se abre el portal del jefe y se activan los poderes.</li>
+          <li>El jefe avisa con un brillo: <b style="color:var(--crimson)">orbe rojo</b> → salta, <b style="color:var(--amber)">láser ámbar</b> → agáchate.</li>
+          <li>Al vencerlo ganas <b>+500</b> y vuelves a la pista.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 6. DATOS E INFOGRAFÍA ===================== -->
+<section class="block" id="datos">
+  <div class="wrap">
+    <span class="eyebrow fx-up">04 / EL SISTEMA EN CIFRAS</span>
+    <h2 class="fx-up">Cada número<br><em>cuenta.</em></h2>
+    <div class="stats" id="stats">
+      <div class="stat" style="--sc:var(--lime)"><div class="v"><span data-count="3">3</span></div><div class="k">Vidas</div><p>1,5 s de invulnerabilidad por golpe</p></div>
+      <div class="stat" style="--sc:var(--cyan)"><div class="v"><span data-count="1500" data-sep>1.500</span><small>pts</small></div><div class="k">Por jefe</div><p>Cada 1.500 se abre un portal</p></div>
+      <div class="stat" style="--sc:var(--crimson)"><div class="v"><span data-count="5">5</span></div><div class="k">Jefes</div><p>Luego regresan más fuertes</p></div>
+      <div class="stat" style="--sc:var(--amber)"><div class="v"><span data-count="14">14</span></div><div class="k">Obstáculos</div><p>8 bajos y 6 altos</p></div>
+      <div class="stat" style="--sc:var(--cyan)"><div class="v"><span data-count="10">10</span><small>pts/s</small></div><div class="k">Puntuación</div><p>+25 por obstáculo · +500 por jefe</p></div>
+      <div class="stat" style="--sc:var(--violet)"><div class="v"><span data-count="25">25</span><small>u/s</small></div><div class="k">Velocidad máx.</div><p>Empieza en 10 y sube 0,15 por segundo</p></div>
+      <div class="stat" style="--sc:var(--amber)"><div class="v"><span data-count="3">3</span></div><div class="k">Poderes</div><p>Disparo, escudo y súper rayo</p></div>
+      <div class="stat" style="--sc:var(--lime)"><div class="v"><span data-count="3">3</span></div><div class="k">Cámaras</div><p>Lateral, tres cuartos y detrás</p></div>
+    </div>
+    <div class="charts">
+      <div class="card">
+        <h3>Vida de cada jefe</h3>
+        <p class="note">Primer ciclo · cada disparo quita 1</p>
+        <div class="bars" id="bars">
+          <div class="bar" style="--bc:#7dff3a"><span class="nm">Virus Rey</span><span class="tr"><span class="fl" style="width:48%"></span></span><span class="val">25</span></div>
+          <div class="bar" style="--bc:#ff33bf"><span class="nm">Dron Malware</span><span class="tr"><span class="fl" style="width:62%"></span></span><span class="val">32</span></div>
+          <div class="bar" style="--bc:#ff8c1a"><span class="nm">Gusano Informático</span><span class="tr"><span class="fl" style="width:73%"></span></span><span class="val">38</span></div>
+          <div class="bar" style="--bc:#40b3ff"><span class="nm">Titán Firewall</span><span class="tr"><span class="fl" style="width:87%"></span></span><span class="val">45</span></div>
+          <div class="bar" style="--bc:#b34dff"><span class="nm">Araña Botnet</span><span class="tr"><span class="fl" style="width:100%"></span></span><span class="val">52</span></div>
+        </div>
+      </div>
+      <div class="card speed">
+        <h3>Curva de velocidad</h3>
+        <p class="note">Llega al máximo a los 100 segundos</p>
+        <svg viewBox="0 0 400 200" role="img" aria-label="La velocidad sube de 10 a 25 unidades por segundo en los primeros 100 segundos y luego se mantiene">
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="#6b7494">
+            <line x1="40" y1="20" x2="390" y2="20" stroke="#1d2440"/><text x="32" y="23" text-anchor="end">25</text>
+            <line x1="40" y1="95" x2="390" y2="95" stroke="#1d2440"/><text x="32" y="98" text-anchor="end">15</text>
+            <line x1="40" y1="170" x2="390" y2="170" stroke="#2a3256"/><text x="32" y="173" text-anchor="end">5</text>
+            <text x="40" y="190">0 s</text><text x="215" y="190" text-anchor="middle">100 s</text><text x="390" y="190" text-anchor="end">200 s</text>
+          </g>
+          <path id="speed-area" d="M40 132.5 L215 20 L390 20 L390 170 L40 170Z" fill="#d62e2c" opacity=".08"/>
+          <path id="speed-line" d="M40 132.5 L215 20 L390 20" fill="none" stroke="#00e5ff" stroke-width="3" stroke-linecap="round"/>
+          <circle id="speed-dot" cx="215" cy="20" r="5" fill="#d62e2c"/>
+          <text x="222" y="40" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#e8ecf7">máx. 25 u/s</text>
+          <text x="60" y="160" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#e8ecf7">inicio 10 u/s</text>
+        </svg>
+      </div>
+    </div>
+    <div class="tech" id="tech" aria-label="Ficha técnica">
+      <div><b>Motor</b><span>Unity 6</span></div>
+      <div><b>Render</b><span>URP</span></div>
+      <div><b>Código</b><span>C# · 20 scripts</span></div>
+      <div><b>Plataforma</b><span>WebGL</span></div>
+      <div><b>Audio</b><span>Música + efectos</span></div>
+      <div><b>Género</b><span>Endless runner 3D</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 7. JUGAR AHORA ===================== -->
+<section class="block" id="jugar">
+  <div class="wrap">
+    <span class="eyebrow fx-up">05 / INICIA EL PROTOCOLO</span>
+    <h2 class="fx-up">Tu turno<br><em>de correr.</em></h2>
+    <p class="intro fx-up">Juega directo en el navegador, sin instalar nada. Necesitas una computadora con teclado.</p>
+    <div class="game" id="game">
+      <div class="game-bar">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span>android-runner · unity webgl</span>
+        <a href="juego/index.html" target="_blank" rel="noopener">Abrir juego</a>
+      </div>
+      <div class="stage" id="stage">
+        <div class="cover" id="cover">
+          <div>
+            <button class="play" id="play" aria-label="Cargar y jugar"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg></button>
+            <h3 id="cover-title">Iniciar partida</h3>
+            <p id="cover-text">Haz clic para cargar el juego.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="mobile-note">El juego se controla con teclado: ábrelo desde una computadora.</p>
+    <div class="req">
+      <div class="card fx-up">
+        <h3>Requerimientos mínimos</h3>
+        <ul>
+          <li>PC o laptop con teclado.</li>
+          <li>Chrome, Edge o Firefox actualizado (WebGL 2.0).</li>
+          <li>4 GB de RAM y aceleración por hardware activa.</li>
+        </ul>
+      </div>
+      <div class="card fx-up">
+        <h3>Instrucciones</h3>
+        <ul>
+          <li>Pulsa «Iniciar partida» y espera la carga.</li>
+          <li>Haz clic dentro del juego para usar el teclado.</li>
+          <li>Si no carga, recarga con Ctrl + F5.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>ANDROID RUNNER</b><p>Limpieza del Sistema</p></div><button class="motion-toggle" type="button" aria-pressed="false">Pausar animaciones</button><a href="#inicio">Volver al inicio</a>
+    <div>Jhon Kevin Barros Monzon · Game Development · Universidad Privada del Valle · 2026</div>
+  </div>
+</footer>
+
+<script src="assets/vendor/gsap/gsap.min.js"></script>
+<script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="assets/js/portal.js"></script>
+
+<!-- ---------- visor 3D del personaje (three.js local) ---------- -->
+<script type="importmap">{"imports":{"three":"./assets/vendor/three/three.module.min.js"}}</script>
+<script type="module" src="assets/js/character.js"></script>
+</body>
+</html>
