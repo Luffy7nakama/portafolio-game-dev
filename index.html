@@ -10,6 +10,49 @@
 <meta property="og:image" content="assets/img/portada.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2305060d'/%3E%3Cpath d='M8 20a8 8 0 0 1 16 0z' fill='%2300e5ff'/%3E%3Crect x='8' y='21' width='16' height='6' rx='2' fill='%23ff2b5e'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/css/portal.css">
+<style>
+  .maze-links{display:flex;flex-wrap:wrap;gap:12px 22px;margin-top:26px;font:600 13px var(--body)}
+  .maze-links a{color:var(--cyan);text-underline-offset:.3em}
+  .maze-guide{margin-top:60px;padding-top:28px;border-top:1px solid var(--line)}
+  .maze-guide h3{font-size:clamp(28px,4vw,46px);margin-bottom:16px}
+  .maze-guide>p{max-width:70ch}
+  .maze-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
+  .maze-card{border:1px solid var(--line);padding:clamp(16px,2.5vw,28px)}
+  .maze-card h4{margin-bottom:12px}
+  .maze-card p+p{margin-top:12px}
+  .maze-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;list-style:none;padding:0;margin:25px 0 18px;counter-reset:maze-step}
+  .maze-flow li{position:relative;display:grid;align-content:start;gap:6px;background:var(--panel);padding:14px 16px;counter-increment:maze-step}
+  .maze-flow li::before{content:counter(maze-step,decimal-leading-zero);font:600 13px var(--mono);color:var(--cyan)}
+  .maze-flow li:not(:last-child)::after{content:'→';position:absolute;right:-17px;top:50%;transform:translateY(-50%);color:var(--cyan)}
+  .maze-flow span,.maze-keys dd,.maze-states dd{color:var(--muted);font-size:14px}
+  .maze-keys,.maze-states{margin:0}
+  .maze-keys{display:grid;grid-template-columns:auto 1fr;align-items:start;gap:10px}
+  .maze-keys dt{white-space:nowrap}
+  .maze-keys dd,.maze-states dd{margin:0}
+  .maze-keys kbd{display:inline-block;min-width:21px;padding:1px 4px;text-align:center;border:1px solid var(--line);border-bottom-width:2px;font:600 12px var(--mono)}
+  .maze-states dt{font-weight:600;margin-top:12px}
+  .maze-states+p{margin-top:14px}
+  .maze-map{background:#141826;color:#f1f2f7;padding:16px;min-width:0}
+  .maze-map svg{display:block;width:100%;height:auto}
+  .maze-legend{display:flex;flex-wrap:wrap;gap:6px 16px;list-style:none;padding:12px 0 0;margin:0;font:500 12px var(--body)}
+  .maze-legend i{display:inline-block;width:.72em;height:.72em;background:var(--marker);border-radius:50%;margin-right:4px}
+  .maze-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:0}
+  .maze-metrics div{display:flex;flex-direction:column;align-items:start;background:var(--panel);padding:14px 16px}
+  .maze-metrics dt,.maze-metrics .maze-metric-note{font:400 13px var(--body);color:var(--muted)}
+  .maze-metrics dd{margin:0}
+  .maze-metrics dd:not(.maze-metric-note){font:700 clamp(28px,4vw,48px) var(--display);color:var(--cyan)}
+  .maze-bars{display:grid;gap:8px;list-style:none;padding:0;margin:16px 0;font-size:13px}
+  .maze-bars li{display:grid;grid-template-columns:minmax(8.4em,1.2fr) 2fr 3.3em;align-items:center;gap:8px}
+  .maze-bars b{text-align:right;font-variant-numeric:tabular-nums}
+  .maze-track{height:9px;background:var(--panel)}
+  .maze-track i{display:block;width:var(--bar);height:100%;background:var(--crimson)}
+  @media(max-width:860px){.maze-pair{grid-template-columns:1fr}}
+  @media(max-width:540px){
+    .maze-flow,.maze-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .maze-flow li:nth-child(2)::after{content:none}
+    .maze-keys{gap:8px}
+  }
+</style>
 </head>
 <body>
 <a class="skip" href="#historia">Saltar al contenido</a>
@@ -305,19 +348,317 @@
         </div>
       </div>
     </div>
-    <div class="req">
-      <div class="card">
-        <h3>Controles</h3>
-        <ul>
-          <li>Flechas para moverte y R para reiniciar.</li>
-          <li>C cambia la cámara, M controla el sonido y V muestra los rayos de visión.</li>
-        </ul>
+    <nav class="maze-links" aria-label="Secciones del laberinto">
+      <a href="#laberinto-guia">Mecánicas y controles</a>
+      <a href="#laberinto-mapa">Mapa</a>
+      <a href="#laberinto-datos">Infografías</a>
+    </nav>
+    <section class="maze-guide" id="laberinto-guia" aria-labelledby="laberinto-guia-title">
+      <h3 id="laberinto-guia-title">Cómo se juega</h3>
+      <p>Guía al Android por la ciudad digital. Los muros y los cortafuegos bloquean el paso. El último punto desbloquea la puerta, y la partida se gana al cruzarla.</p>
+      <ol class="maze-flow" aria-label="Secuencia para ganar">
+        <li><strong>Entrada</strong><span>Empiezas en el centro del sur.</span></li>
+        <li><strong>Recolección</strong><span>Recoge los 181 puntos, incluidos los antivirus.</span></li>
+        <li><strong>Puerta abierta</strong><span>El contador llega a cero y se desbloquea la salida.</span></li>
+        <li><strong>Victoria</strong><span>Cruza la puerta del extremo norte.</span></li>
+      </ol>
+      <div class="maze-pair">
+        <div class="maze-card">
+          <h4>Controles de teclado</h4>
+          <dl class="maze-keys">
+            <dt><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></dt><dd>Mover al Android por los pasillos.</dd>
+            <dt><kbd>C</kbd></dt><dd>Alternar entre vista general y cámara de seguimiento.</dd>
+            <dt><kbd>V</kbd></dt><dd>Mostrar u ocultar los rayos de visión de los virus.</dd>
+            <dt><kbd>M</kbd></dt><dd>Activar o silenciar el sonido.</dd>
+            <dt><kbd>R</kbd></dt><dd>Reiniciar la partida.</dd>
+          </dl>
+        </div>
+        <div class="maze-card">
+          <h4>Antivirus y colisiones</h4>
+          <p>Los orbes grandes activan un antivirus de 8 segundos. Mientras dura, los virus se ponen azules y huyen. Si alcanzas a uno, ganas puntos y el virus vuelve a su base para reaparecer.</p>
+          <p>Un virus activo termina la partida si te toca sin el poder. Los virus asustados parpadean en los últimos 2 segundos.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Antivirus</h3>
-        <p>Recoge un antivirus para poder comerte a los virus durante unos segundos.</p>
+    </section>
+    <section class="maze-guide" id="laberinto-mapa" aria-labelledby="laberinto-mapa-title">
+      <h3 id="laberinto-mapa-title">Plano del laberinto</h3>
+      <div class="maze-pair maze-map-pair">
+        <figure class="maze-map">
+          <svg viewBox="-.4 -.4 25.8 17.8" role="img" aria-label="Plano de 25 columnas por 17 filas. Entrada en el centro inferior, salida en el centro superior y base de los virus en el centro. Se marcan los seis antivirus y los dos cortafuegos.">
+            <rect x="0.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="1.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="2.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="3.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="4.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="5.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="6.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="7.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="8.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="9.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="10.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="11.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="12.12" y="0.12" width=".76" height=".76" rx=".16" fill="#7ee196"/>
+            <rect x="13.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="14.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="15.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="16.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="17.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="18.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="19.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="20.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="21.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="22.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="23.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="0.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="1.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <circle cx="1.5" cy="1.5" r=".27" fill="#ffe296"/>
+            <circle cx="23.5" cy="1.5" r=".27" fill="#ffe296"/>
+            <rect x="24.08" y="1.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="2.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="3.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="4.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="6.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="7.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="8.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="9.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="10.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="12.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="14.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="15.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="16.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="17.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="18.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="20.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="21.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="22.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="2.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="2.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="3.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="4.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="6.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="7.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="8.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="9.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="10.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="12.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="14.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="15.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="16.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="17.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="18.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="20.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="21.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="22.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="3.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="4.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="4.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="2.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="3.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="4.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="6.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="8.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="9.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="10.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="12.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="14.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="15.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="16.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="18.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="20.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="21.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="22.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="5.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="6.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="6.08" y="6.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="18.08" y="6.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="6.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="1.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="2.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="4.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="6.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="8.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="10.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="11.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="13.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="14.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="16.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="18.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="20.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="22.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="23.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="7.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="8.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="4.08" y="8.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="6.08" y="8.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="8.08" y="8.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="10.08" y="8.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <circle cx="12.5" cy="8.5" r=".30" fill="#fff"/>
+            <rect x="14.08" y="8.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="16.08" y="8.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="18.08" y="8.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="20.08" y="8.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="8.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="2.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="3.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="4.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="6.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="10.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="11.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="12.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="13.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="14.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="18.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="20.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="21.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="22.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="9.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="10.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="2.08" y="10.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="6.12" y="10.12" width=".76" height=".76" rx=".16" fill="#fb9ebe"/>
+            <rect x="18.12" y="10.12" width=".76" height=".76" rx=".16" fill="#fb9ebe"/>
+            <rect x="22.08" y="10.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="10.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="2.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="4.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="5.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="6.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="7.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="8.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="10.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="12.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="14.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="16.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="17.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="18.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="19.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="20.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="22.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="11.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="12.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="4.08" y="12.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <circle cx="5.5" cy="12.5" r=".27" fill="#ffe296"/>
+            <rect x="8.08" y="12.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="16.08" y="12.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <circle cx="19.5" cy="12.5" r=".27" fill="#ffe296"/>
+            <rect x="20.08" y="12.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="12.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="1.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="2.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="4.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="6.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="8.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="9.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="11.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="13.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="15.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="16.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="18.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="20.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="22.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="23.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="13.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="14.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="6.08" y="14.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="11.08" y="14.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="13.08" y="14.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="18.08" y="14.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="14.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="15.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <circle cx="1.5" cy="15.5" r=".27" fill="#ffe296"/>
+            <rect x="2.08" y="15.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="4.08" y="15.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="9.08" y="15.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="15.08" y="15.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="20.08" y="15.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="22.08" y="15.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <circle cx="23.5" cy="15.5" r=".27" fill="#ffe296"/>
+            <rect x="24.08" y="15.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="0.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="1.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="2.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="3.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="4.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="5.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="6.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="7.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="8.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="9.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="10.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="11.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="12.12" y="16.12" width=".76" height=".76" rx=".16" fill="#82bffa"/>
+            <rect x="13.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="14.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="15.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="16.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="17.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="18.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="19.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="20.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="21.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="22.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="23.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+            <rect x="24.08" y="16.08" width=".84" height=".84" rx=".15" fill="#657ac6" stroke="#91a7ff" stroke-width=".045"/>
+          </svg>
+          <figcaption>
+            <ul class="maze-legend" aria-label="Leyenda del plano">
+              <li><i style="--marker:#91a7ff"></i> Muros</li>
+              <li><i style="--marker:#ffe296"></i> Antivirus</li>
+              <li><i style="--marker:#fb9ebe"></i> Cortafuegos</li>
+              <li><i style="--marker:#82bffa"></i> Entrada</li>
+              <li><i style="--marker:#7ee196"></i> Salida</li>
+              <li><i style="--marker:#fff"></i> Base de los virus</li>
+            </ul>
+          </figcaption>
+        </figure>
+        <div class="maze-card">
+          <h4>Cómo reaccionan los virus</h4>
+          <dl class="maze-states">
+            <dt>Patrulla → Persecución</dt><dd>Un virus recorre cuatro puntos. Si su rayo de visión detecta al Android, lo persigue. Si pierde contacto visual, retoma la patrulla.</dd>
+            <dt>Patrulla o persecución → Huida</dt><dd>Al recoger un antivirus, los virus activos se alejan. Cuando acaba el efecto, vuelven a patrullar.</dd>
+            <dt>Huida → Regreso a la base</dt><dd>Si el Android atrapa a un virus asustado, este vuelve a la base y espera 1,5 s antes de patrullar de nuevo.</dd>
+          </dl>
+          <p>Unity usa NavMesh para que los virus busquen rutas por los pasillos y un raycast para comprobar si ven al jugador.</p>
+        </div>
       </div>
-    </div>
+    </section>
+    <section class="maze-guide maze-data" id="laberinto-datos" aria-labelledby="laberinto-datos-title">
+      <h3 id="laberinto-datos-title">El laberinto en cifras</h3>
+      <dl class="maze-metrics">
+        <div><dt>Dimensiones</dt><dd>25 × 17</dd><dd class="maze-metric-note">Celdas del mapa</dd></div>
+        <div><dt>Coleccionables</dt><dd>181</dd><dd class="maze-metric-note">Incluyen 6 antivirus</dd></div>
+        <div><dt>Enemigos</dt><dd>6</dd><dd class="maze-metric-note">Virus con rutas propias</dd></div>
+        <div><dt>Antivirus</dt><dd>8 s</dd><dd class="maze-metric-note">Tiempo de efecto</dd></div>
+      </dl>
+      <div class="maze-pair">
+        <figure class="maze-card">
+          <figcaption><h4>Bonificación por virus</h4><p>En un mismo antivirus, el valor aumenta hasta 1.600 puntos por virus.</p></figcaption>
+          <ul class="maze-bars">
+            <li><span>Primero</span><span class="maze-track"><i style="--bar:12.5%"></i></span><b>200</b></li>
+            <li><span>Segundo</span><span class="maze-track"><i style="--bar:25%"></i></span><b>400</b></li>
+            <li><span>Tercero</span><span class="maze-track"><i style="--bar:50%"></i></span><b>800</b></li>
+            <li><span>Cuarto y siguientes</span><span class="maze-track"><i style="--bar:100%"></i></span><b>1.600</b></li>
+          </ul>
+          <p>Cada punto normal suma 10 y cada antivirus suma 50.</p>
+        </figure>
+        <figure class="maze-card">
+          <figcaption><h4>Velocidad de movimiento</h4><p>Unidades de Unity por segundo.</p></figcaption>
+          <ul class="maze-bars">
+            <li><span>Android</span><span class="maze-track"><i style="--bar:33.333%"></i></span><b>3</b></li>
+            <li><span>Virus en patrulla</span><span class="maze-track"><i style="--bar:27.778%"></i></span><b>2,5</b></li>
+            <li><span>Virus en persecución</span><span class="maze-track"><i style="--bar:38.889%"></i></span><b>3,5</b></li>
+            <li><span>Virus en huida</span><span class="maze-track"><i style="--bar:22.222%"></i></span><b>2</b></li>
+            <li><span>Virus en regreso</span><span class="maze-track"><i style="--bar:100%"></i></span><b>9</b></li>
+          </ul>
+        </figure>
+      </div>
+    </section>
   </div>
 </section>
 </main>
