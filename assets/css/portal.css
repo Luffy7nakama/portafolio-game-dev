@@ -23,3 +23,20 @@ body.motion-paused .cinema{height:auto}body.motion-paused .cinema-sticky{positio
 
 .signal-orbit{position:absolute;right:50px;bottom:140px;width:160px;height:160px;color:#eeeee7;opacity:.7;pointer-events:none}.orbit-ring,.orbit-sweep{transform-origin:90px 90px;animation:turn 18s linear infinite}.orbit-sweep{animation-duration:6s}@media(max-width:860px){.signal-orbit{width:100px;height:100px;right:24px;bottom:auto;top:90px}}
 .speed svg g{fill:#b7b9ac}.speed #speed-line{stroke:#ee7468}.speed #speed-dot{fill:#ee7468}
+
+/* Navegación y controles de los dos juegos */
+.hero-meta .developer { color: var(--text); font-size: 12px; font-weight: 700; }
+.menu .maze-nav { background: var(--crimson); color: white; }
+.game-controls { display: flex; flex-wrap: wrap; gap: 8px; }
+.game-controls .btn { min-height: 38px; padding: 8px 14px; }
+.game-fullscreen { background: transparent; border: 1px solid #ffffff55; color: inherit; }
+.game-status { color: inherit; padding: 9px 20px; font-size: 14px; }
+.game-status:empty { display: none; }
+.game [hidden] { display: none; }
+.game:fullscreen { display: flex; flex-direction: column; margin: 0; }
+.game:fullscreen .stage { flex: 1; min-height: 0; aspect-ratio: auto; }
+#laberinto { border-top: 1px solid var(--line); }
+#laberinto .cover { background: linear-gradient(#0006,#000b), url('../img/laberinto.jpg') center/cover; }
+@media (max-width: 540px) {
+  .hero-meta .developer { max-width: 145px; font-size: 11px; }
+}

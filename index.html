@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Android Runner — Limpieza del Sistema</title>
-<meta name="description" content="Portal oficial de Android Runner: Limpieza del Sistema, endless runner 3D desarrollado en Unity.">
-<meta property="og:title" content="Android Runner — Limpieza del Sistema">
-<meta property="og:description" content="Endless runner 3D en Unity: un Android debe limpiar un sistema infectado y derrotar a cinco jefes.">
+<title>Portafolio de juegos | Jhon Kevin Barros Monzon</title>
+<meta name="description" content="Portafolio de Jhon Kevin Barros Monzon con Android Runner y Laberinto Pac-Man.">
+<meta property="og:title" content="Portafolio de juegos | Jhon Kevin Barros Monzon">
+<meta property="og:description" content="Android Runner y Laberinto Pac-Man en el mismo portal.">
 <meta property="og:image" content="assets/img/portada.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2305060d'/%3E%3Cpath d='M8 20a8 8 0 0 1 16 0z' fill='%2300e5ff'/%3E%3Crect x='8' y='21' width='16' height='6' rx='2' fill='%23ff2b5e'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/css/portal.css">
@@ -36,7 +36,8 @@
         <li><a href="#personaje">Personaje</a></li>
         <li><a href="#mecanicas">Mecánicas</a></li>
         <li><a href="#datos">Datos</a></li>
-        <li><a class="cta" href="#jugar">Jugar ahora</a></li>
+        <li><a class="cta" href="#jugar">Android Runner</a></li>
+        <li><a class="cta maze-nav" href="#laberinto">Laberinto</a></li>
       </ul>
     </nav>
   </div>
@@ -46,9 +47,9 @@
 <!-- ===================== 2. SECCIÓN PRINCIPAL ===================== -->
 <section class="hero" id="inicio">
   <div class="wrap">
-    <div class="hero-meta"><span><i class="live-dot"></i> PROTOCOLO DE LIMPIEZA / ACTIVO</span><span>UNITY · ENDLESS RUNNER 3D</span></div>
+    <div class="hero-meta"><span><i class="live-dot"></i> PROTOCOLO DE LIMPIEZA / ACTIVO</span><span class="developer">Jhon Kevin Barros Monzon</span></div>
     <h1><span class="title-line">ANDROID</span><span class="title-line red">RUNNER<span class="title-star" aria-hidden="true">✳</span></span></h1>
-    <div class="hero-bottom"><p class="hook">El sistema está infectado.<br>Tu misión: <b>seguir corriendo.</b></p><p class="lead">Una ciudad digital. Cinco núcleos de infección. Un Android dispuesto a limpiarlo todo.</p><div class="actions"><a class="btn btn-play" href="juego/index.html">JUGAR AHORA <span class="play-triangle" aria-hidden="true"></span></a><a class="btn btn-ghost" href="#historia">Explorar la historia</a></div></div>
+    <div class="hero-bottom"><p class="hook">El sistema está infectado.<br>Tu misión: <b>seguir corriendo.</b></p><p class="lead">Una ciudad digital. Cinco núcleos de infección. Un Android dispuesto a limpiarlo todo.</p><div class="actions"><a class="btn btn-play" href="#jugar">ANDROID RUNNER <span class="play-triangle" aria-hidden="true"></span></a><a class="btn btn-ghost" href="#laberinto">Laberinto Pac-Man</a></div></div>
     <div class="quick" aria-label="Métricas rápidas"><div class="q"><b>03</b><span>VIDAS INICIALES</span></div><div class="q"><b>1.500</b><span>PUNTOS / PORTAL</span></div><div class="q"><b>05</b><span>JEFES DISTINTOS</span></div><div class="q"><b>↑ ↓</b><span>SALTA / ESQUIVA</span></div></div>
   </div>
 </section>
@@ -237,23 +238,25 @@
 </section>
 
 <!-- ===================== 7. JUGAR AHORA ===================== -->
-<section class="block" id="jugar">
+<section class="block" id="jugar" aria-labelledby="runner-title" tabindex="-1">
   <div class="wrap">
-    <span class="eyebrow fx-up">05 / INICIA EL PROTOCOLO</span>
-    <h2 class="fx-up">Tu turno<br><em>de correr.</em></h2>
+    <span class="eyebrow">Juego 1</span>
+    <h2 id="runner-title">Android <em>Runner</em></h2>
     <p class="intro fx-up">Juega directo en el navegador, sin instalar nada. Necesitas una computadora con teclado.</p>
-    <div class="game" id="game">
+    <div class="game" data-game="juego/index.html" data-title="Android Runner">
       <div class="game-bar">
-        <span class="dots"><i></i><i></i><i></i></span>
-        <span>android-runner · unity webgl</span>
-        <a href="juego/index.html" target="_blank" rel="noopener">Abrir juego</a>
+        <span>UNITY WEBGL</span>
+        <div class="game-controls">
+          <button type="button" class="btn btn-play" data-play aria-label="START Android Runner" aria-controls="runner-stage">START</button>
+          <button type="button" class="btn game-fullscreen" data-fullscreen hidden>Pantalla completa</button>
+        </div>
       </div>
-      <div class="stage" id="stage">
-        <div class="cover" id="cover">
+      <p class="game-status" role="status" aria-live="polite"></p>
+      <div class="stage" id="runner-stage">
+        <div class="cover">
           <div>
-            <button class="play" id="play" aria-label="Cargar y jugar"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg></button>
-            <h3 id="cover-title">Iniciar partida</h3>
-            <p id="cover-text">Haz clic para cargar el juego.</p>
+            <h3>Android Runner</h3>
+            <p>Pulsa START para cargar el juego.</p>
           </div>
         </div>
       </div>
@@ -271,10 +274,48 @@
       <div class="card fx-up">
         <h3>Instrucciones</h3>
         <ul>
-          <li>Pulsa «Iniciar partida» y espera la carga.</li>
+          <li>Pulsa START y espera la carga.</li>
           <li>Haz clic dentro del juego para usar el teclado.</li>
           <li>Si no carga, recarga con Ctrl + F5.</li>
         </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="block" id="laberinto" aria-labelledby="laberinto-title" tabindex="-1">
+  <div class="wrap">
+    <span class="eyebrow">Juego 2</span>
+    <h2 id="laberinto-title">Laberinto <em>Pac-Man</em></h2>
+    <p class="intro">Recoge todos los puntos, esquiva a los virus y cruza la salida cuando se abra.</p>
+    <div class="game" data-game="laberinto/index.html" data-title="Laberinto Pac-Man">
+      <div class="game-bar">
+        <span>UNITY WEBGL</span>
+        <div class="game-controls">
+          <button type="button" class="btn btn-play" data-play aria-label="START Laberinto Pac-Man" aria-controls="laberinto-stage">START</button>
+          <button type="button" class="btn game-fullscreen" data-fullscreen hidden>Pantalla completa</button>
+        </div>
+      </div>
+      <p class="game-status" role="status" aria-live="polite"></p>
+      <div class="stage" id="laberinto-stage">
+        <div class="cover">
+          <div>
+            <h3>Laberinto Pac-Man</h3>
+            <p>Pulsa START para cargar el juego.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="req">
+      <div class="card">
+        <h3>Controles</h3>
+        <ul>
+          <li>Flechas para moverte y R para reiniciar.</li>
+          <li>C cambia la cámara, M controla el sonido y V muestra los rayos de visión.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Antivirus</h3>
+        <p>Recoge un antivirus para poder comerte a los virus durante unos segundos.</p>
       </div>
     </div>
   </div>
@@ -291,6 +332,7 @@
 <script src="assets/vendor/gsap/gsap.min.js"></script>
 <script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
 <script src="assets/js/portal.js"></script>
+<script src="assets/js/juegos.js" defer></script>
 
 <!-- ---------- visor 3D del personaje (three.js local) ---------- -->
 <script type="importmap">{"imports":{"three":"./assets/vendor/three/three.module.min.js"}}</script>

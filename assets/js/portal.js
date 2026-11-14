@@ -24,17 +24,6 @@
   }),{rootMargin:'-15% 0px -60% 0px'});
   document.querySelectorAll('.block[id]').forEach(s => sectionSpy.observe(s));
 
-  // Load Unity only after an explicit click, leaving the landing page light.
-  $('#play').addEventListener('click', () => {
-    if($('#stage iframe')) return;
-    const f = document.createElement('iframe');
-    f.title = 'Android Runner — juego Unity WebGL';
-    f.allow = 'fullscreen; autoplay; gamepad'; f.allowFullscreen = true;
-    f.src = 'juego/index.html';
-    f.addEventListener('load', () => f.focus(), {once:true});
-    $('#stage').appendChild(f); $('#cover').remove();
-  });
-
   // Highlight controls while reading the guide, without intercepting browser keys.
   const controlKeys = ['ArrowUp','ArrowDown','c','r',' ','x','z'];
   document.addEventListener('keydown', e => {
@@ -102,7 +91,6 @@
       gsap.from('.fl',{scaleX:0,duration:1.2,stagger:.1,scrollTrigger:{trigger:'#bars',start:'top 85%'}});
       const line=$('#speed-line'), length=line.getTotalLength();
       gsap.fromTo(line,{strokeDasharray:length,strokeDashoffset:length},{strokeDashoffset:0,ease:'none',scrollTrigger:{trigger:'.speed',start:'top 85%',end:'bottom 80%',scrub:.5}});
-      gsap.fromTo('#game',{scale:.94},{scale:1,ease:'none',scrollTrigger:{trigger:'#game',start:'top 95%',end:'top 35%',scrub:.6}});
       return () => { mm.revert(); statement.innerHTML=original; };
     });
     ScrollTrigger.refresh();
